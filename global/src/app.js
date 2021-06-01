@@ -1,20 +1,19 @@
 const express = require('express');
-const Database = require('nedb');
+const axios = require('axios');
+//const Database = require('nedb');
 
 const app = express();
 
-const database = new Database('database.db');
-database.loadDatabase();
-database.insert({name: 'tinhto', status: 'newbie'});
+axios.get('http://localhost:5000/')
+  .then(response => {
+    console.log(response.data);
+  })
+  .catch(error => {
+    console.log(error);
+});
  
 app.get('/', function (req, res) {
-    database.find({}, (err, data) => {
-        if(err){
-            res.end();
-            return;
-        }
-        res.json(data);
-    });
+    res.send('global');
 });
  
 app.listen(3000, () => {
