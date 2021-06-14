@@ -51,6 +51,15 @@ app.post('/laynhanvien', (req, res) => {
             res.json(data);
             db.NhanVien.remove({ _id: data[0]._id }, {multi: true}, (err, numRemoved) => {
                 console.log('Delete ' + numRemoved + ' rows');
+
+                //API THÊM
+                app.post('/themnhanvien', (req, res) => {
+                    const MaNV = req.query.MaNV, GioiTinh = req.query.GioiTinh, NgayVL = req.query.NgayVL, BacHoc = req.query.BacHoc, HoTen = req.query.HoTen, MaCT = req.query.MaCT;
+                    console.log('REQ: ',MaNV, HoTen, GioiTinh, NgayVL, BacHoc, MaCT);
+
+                    // Thêm nhân viên vào bên NhanVien2 ở đây
+                    // db.NhanVien2.insert({MaNV: 'MaNV', HoTen: HoTen, GioiTinh: GioiTinh, NgayVL: NgayVL, BacHoc: BacHoc, MaCT: MaCT});
+                })
             });
             
         }
