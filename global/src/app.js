@@ -16,13 +16,12 @@ db.CuaTiem.loadDatabase();
 // db.CuaTiem.insert({MaCT: 'CH003', TenCuaHang: 'Nhạc cụ Thiên Kiều', DiaChi: 'Quận 12, TPHCM'});
 // db.CuaTiem.insert({MaCT: 'CH004', TenCuaHang: 'Nhạc cụ Thanh Lâm', DiaChi: 'Thành phố Thủ Đức, TPHCM'});
 
-async function chuyennhanvien() {
-  const MaNV = 'NV0010';
+async function chuyenNV_Tu_1_qua_2(MaNV) {
   let res = await axios.post('http://localhost:5000/laynhanvien?MaNV=' + MaNV);
   let req = await axios.post('http://localhost:7000/themnhanvien', res.data[0]);
 }
  
-chuyennhanvien();
+chuyenNV_Tu_1_qua_2('NV0010');
 
 app.listen(3000, () => {
     console.log('listening at 3000')
